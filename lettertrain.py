@@ -29,7 +29,7 @@ def menu(l):
 
 def init(l):
     di = {}
-    with open ('words_en.txt', 'r') as words:
+    with open ('words.txt', 'r', encoding='utf-8') as words:
         rl = words.readlines()
         for i in rl:
             spl = i.split(',')
@@ -55,7 +55,7 @@ def ask(di, i):
     if di[i] == inword:
         print('Молодец!')
     elif inword == 'п':
-        ask(i)
+        ask(di, i)
     else:
         print('Wat? По идее ' + di[i] + ', а у тебя ' + inword + '.')
 
