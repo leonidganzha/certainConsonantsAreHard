@@ -1,6 +1,7 @@
 import random
 import vlc
 import os
+import time
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -40,20 +41,27 @@ def session(di, l):
     n = len(di)
     rnums = random.sample(range(n), l)
     for i in rnums:
-        filename = 'audio/' + str(i) + '.mp3'
-        vplay(filename)
-        inword = input()
-        if di[i] == inword:
-            print('Молодец!')
-        else:
-            print('Wat? По идее ' + di[i] + ', а у тебя ' + inword + '.')
+        ask(di, i)
     q = input('Сессия окончена! Нажми \'м\', чтобы вернуться в меню.')
     if q == 'м':
         menu(l)
 
 
+def ask(di, i):
+    print('Введи нужное слово. Или введи букву "п", чтобы услышать слово ещё раз.')
+    filename = 'audio/' + str(i) + '.mp3'
+    vplay(filename)
+    inword = input()
+    if di[i] == inword:
+        print('Молодец!')
+    elif inword == 'п':
+        ask(i)
+    else:
+        print('Wat? По идее ' + di[i] + ', а у тебя ' + inword + '.')
+
 
 def vplay(filename):
+    time.sleep(3)
     player = vlc.MediaPlayer(filename)
     player.play()
 
