@@ -61,7 +61,7 @@ def ask(di, i):
 
 
 def vplay(filename):
-    time.sleep(3)
+    time.sleep(2)
     player = vlc.MediaPlayer(filename)
     player.play()
 
